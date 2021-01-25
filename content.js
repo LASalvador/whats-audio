@@ -99,37 +99,3 @@ const chatMutation = setInterval(() => {
         })
     }
 })
-// próximas features
-// usando o botão para chegar no audio
-// var divPai = b.parentElement.parentElement
-// const audioAtual = divPai.lastChild.lastElementChild.lastElementChild
-
-// usando audio para chegar no botão
-// const divPai = audio.parentElement.parentElement.parentElement
-// div do botão de play
-// const divBotão = divPai.firstChild
-
-// const interval_button = setInterval(() => {
-//        var audios = document.querySelectorAll('audio')
-//        if (audios) {
-//             audios.forEach(audio => {
-//                 const divPai = audio.parentElement.parentElement.parentElement
-//                 divBotao = divPai.firstChild
-
-//                 divBotao.classList = {}
-//                 divBotao.classList.add('div_buttons')
-//                 // botão de + 10s
-//                 var b = document.createElement('button')
-//                 b.innerHTML = '+10s'
-//                 b.classList.add('time_button')
-//                 divBotao.append(b)
-//                 // botão de -10s
-//                 var b1 = document.createElement('button')
-//                 b1.innerHTML = '-10s'
-//                 b1.classList.add('time_button')
-//                 divBotao.prepend(b1)
-//             })
-//             clearInterval(interval_button)
-//        }
-
-// },1000)
