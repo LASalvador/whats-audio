@@ -1,0 +1,135 @@
+function changeSpeed(speed) {
+    const audios = document.querySelectorAll('audio');
+    audios.forEach((audio) => {
+        audio.playbackRate = speed;
+    })
+}
+
+function advanceAudio(audio) {
+    audio.currentTime = audio.currentTime + 0.10
+}
+
+function delayAudio(audio) {
+    audio.currentTime = audio.currentTime - 0.10
+}
+
+function updateAudioView(audio) {
+    const divPai = audio.parentElement.parentElement.parentElement
+    divBotao = divPai.firstChild
+
+    divBotao.classList = {}
+    divBotao.classList.add('div_buttons')
+    // botão de + 10s
+    var b = document.createElement('button')
+    b.innerHTML = '+10s'
+    b.classList.add('time_button')
+    divBotao.append(b)
+    // botão de -10s
+    var b1 = document.createElement('button')
+    b1.innerHTML = '-10s'
+    b1.classList.add('time_button')
+    divBotao.prepend(b1)
+}
+
+const interval = setInterval(() => {
+    const header = document.querySelector('header')
+    const speeds = [1, 1.25, 1.5, 2]
+    if (header) {
+        clearInterval(interval)
+        const select = document.createElement('select')
+
+        speeds.forEach(speed => {
+            const option = document.createElement('option')
+            option.innerHTML = speed + "x"
+            option.value = speed
+            select.appendChild(option)
+        })
+
+        select.addEventListener("change", (event) => {
+            changeSpeed(event.target.value)
+            window.localStorage.setItem('speed', event.target.value)
+        })
+
+        if (window.localStorage.getItem('speed')) {
+            select.value = window.localStorage.getItem('speed').toString()
+        }
+
+        header.appendChild(select)
+    }
+})
+
+const callback = function (mutationsList) {
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            const speed = window.localStorage.getItem('speed') || 1
+            changeSpeed(speed)
+        }
+    }
+}
+
+const observer = new MutationObserver(callback);
+
+function createMutationMessages() {
+    const div = document.querySelector("#main")
+
+    if (div) {
+        const divChat = div.children["4"]
+        const divChatF1 = divChat.children["0"]
+        var divChatF2 = divChatF1.children["2"]
+        var divConversas = divChatF2.children["2"]
+        console.log(divConversas);
+        if (divConversas) {
+            const config = {
+                attributes: true,
+                childList: true,
+                subtree: true
+            };
+            observer.observe(divConversas, config);
+        }    
+    }
+}
+
+const chatMutation = setInterval(() => {
+    const app = document.querySelector('#pane-side');
+    if (app) {
+        clearInterval(chatMutation)
+        app.addEventListener('click', function () {
+            observer.disconnect()
+            createMutationMessages()
+        })
+    }
+})
+// próximas features
+// usando o botão para chegar no audio
+// var divPai = b.parentElement.parentElement
+// const audioAtual = divPai.lastChild.lastElementChild.lastElementChild
+
+// usando audio para chegar no botão
+// const divPai = audio.parentElement.parentElement.parentElement
+// div do botão de play
+// const divBotão = divPai.firstChild
+
+// const interval_button = setInterval(() => {
+//        var audios = document.querySelectorAll('audio')
+//        if (audios) {
+//             audios.forEach(audio => {
+//                 const divPai = audio.parentElement.parentElement.parentElement
+//                 divBotao = divPai.firstChild
+
+//                 divBotao.classList = {}
+//                 divBotao.classList.add('div_buttons')
+//                 // botão de + 10s
+//                 var b = document.createElement('button')
+//                 b.innerHTML = '+10s'
+//                 b.classList.add('time_button')
+//                 divBotao.append(b)
+//                 // botão de -10s
+//                 var b1 = document.createElement('button')
+//                 b1.innerHTML = '-10s'
+//                 b1.classList.add('time_button')
+//                 divBotao.prepend(b1)
+//             })
+//             clearInterval(interval_button)
+//        }
+
+// },1000)
