@@ -33,7 +33,7 @@ function updateAudioView(audio) {
 
 const interval = setInterval(() => {
     const header = document.querySelector('header')
-    const speeds = [1, 1.25, 1.5, 2]
+    const speeds = [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5,3]
     if (header) {
         clearInterval(interval)
         const select = document.createElement('select')
