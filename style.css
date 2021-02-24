@@ -11,3 +11,22 @@
     margin-top: -1px;
     margin-right: 60px;
 }
+
+.select_speed {
+    width: 12%;
+    font-size: 18px;
+    line-height: 18px;
+    color: #009588;
+    outline: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 6px 0;
+    background-color: initial;
+    border: none;
+    border-bottom: 1px solid var(--border-strong);
+    border-radius: 0;
+    font-weight: bold;
+    outline: none;
+    border: none;
+}
