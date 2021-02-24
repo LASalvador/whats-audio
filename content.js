@@ -37,7 +37,7 @@ const interval = setInterval(() => {
     if (header) {
         clearInterval(interval)
         const select = document.createElement('select')
-
+        select.classList.add('select_speed')
         speeds.forEach(speed => {
             const option = document.createElement('option')
             option.innerHTML = speed + "x"
