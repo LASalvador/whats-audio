@@ -2,6 +2,19 @@ function changeSpeed(speed) {
     const audios = document.querySelectorAll('audio');
     audios.forEach((audio) => {
         audio.playbackRate = speed;
+        audio.onratechange = function(e) { 
+            const newSpeed = parseInt(speed)
+            const atual = parseInt(e.target.playbackRate)
+            
+            if (newSpeed > atual) {
+                e.target.playbackRate = newSpeed 
+            }
+        } 
+        audio.onplaying = function(e) { 
+            if (e.target.playbackRate < speed ) {
+                e.target.playbackRate = speed 
+            }
+        }
     })
 }
 
