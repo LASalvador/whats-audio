@@ -33,9 +33,11 @@ function updateAudioView(audio) {
 
 const interval = setInterval(() => {
     const header = document.querySelector('header')
-    const speeds = [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5,3]
     if (header) {
         clearInterval(interval)
+
+        const profilePhoto = header.firstChild
+        const speeds = [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5,3]
         const select = document.createElement('select')
         select.classList.add('select_speed')
         speeds.forEach(speed => {
@@ -54,7 +56,7 @@ const interval = setInterval(() => {
             select.value = window.localStorage.getItem('speed').toString()
         }
 
-        header.appendChild(select)
+        profilePhoto.after(select)
     }
 })
 
@@ -77,7 +79,6 @@ function createMutationMessages() {
         const divChatF1 = divChat.children["0"]
         var divChatF2 = divChatF1.children["2"]
         var divConversas = divChatF2.children["2"]
-        console.log(divConversas);
         if (divConversas) {
             const config = {
                 attributes: true,
